@@ -9,7 +9,10 @@ import {
   Put,
   Query,
   Req,
+  UploadedFile,
+  UploadedFiles,
   UseGuards,
+  UseInterceptors,
 } from "@nestjs/common";
 import { Book } from "./schemas/book.schema";
 import { CreateBookDto } from "./dto/create-book.dto";
@@ -20,6 +23,7 @@ import { AuthGuard } from "@nestjs/passport";
 import { Roles } from "src/auth/decorators/roles.decorator";
 import { Role } from "src/auth/enums/role.enum";
 import { RolesGuard } from "src/auth/guards/role.guard";
+import { FileInterceptor, FilesInterceptor } from "@nestjs/platform-express";
 
 @Controller("book")
 export class BookController {
@@ -66,5 +70,15 @@ export class BookController {
     id: string,
   ): Promise<Book> {
     return this.bookService.deleteById(id);
+  }
+
+  @Put("upload/:id")
+  @UseGuards(AuthGuard())
+  @UseInterceptors(FilesInterceptor("files"))
+  async uploadImages(
+    @Param("id") id: string,
+    @UploadedFiles() files: Array<Express.Multer.File>,
+  ) {
+    console.log(files);
   }
 }
