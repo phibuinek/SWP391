@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DB_URI: mongodb://mongo:27017/library-nest-api
+    depends_on:
+      - mongo
+    image: paw-fund-nestjs:latest
+    networks:
+      - pawfund_network  # Thêm app vào mạng chung
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db  # Lưu dữ liệu MongoDB vào volume
+    networks:
+      - pawfund_network  # Thêm mongo vào mạng chung
+
+networks:
+  pawfund_network:  # Tạo một network riêng cho các dịch vụ
+    driver: bridge
+
+volumes:
+  mongo_data:

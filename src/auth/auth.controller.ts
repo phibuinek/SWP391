@@ -11,7 +11,7 @@ export class AuthController {
   signUp(@Body() signUpDto: SignUpDto): Promise<{ token: string }> {
     return this.authSerivce.signUp(signUpDto);
   }
-  @Get("/login")
+  @Post("/login")
   login(@Body() loginDto: LoginDto): Promise<{ token: string }> {
     return this.authSerivce.login(loginDto);
   }
