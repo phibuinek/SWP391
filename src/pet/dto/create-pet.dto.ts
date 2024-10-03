@@ -30,48 +30,50 @@ export enum PetStatus {
 
 export class CreatePetDto {
   @ApiProperty({
-    description: 'ID của Pet',
-    example: 1
+    description: "ID của Pet",
+    example: 1,
   })
-  @IsInt() 
+  @IsInt()
   id: number;
 
   @ApiProperty({
-    description: 'ID của shelter',
+    description: "ID của shelter",
     example: 101,
   })
   @IsInt()
   shelterId: number;
 
   @ApiProperty({
-    description: 'Mã của thú cưng',
-    example: 'PET12345',
+    description: "Mã của thú cưng",
+    example: "PET12345",
   })
   @IsString()
   @Length(4, 20)
-  @Matches(/^PET\d+$/, { message: 'petCode must start with "PET" followed by numbers' })
+  @Matches(/^PET\d+$/, {
+    message: 'petCode must start with "PET" followed by numbers',
+  })
   petCode: string;
 
   @ApiProperty({
-    description: 'Tên của thú cưng',
-    example: 'Fluffy',
+    description: "Tên của thú cưng",
+    example: "Fluffy",
   })
   @IsString()
   @Length(1, 100)
   name: string;
 
   @ApiProperty({
-    description: 'Mô tả về thú cưng (nếu có)',
-    example: 'A friendly dog',
-    required: false,  // Vì đây là trường tùy chọn
+    description: "Mô tả về thú cưng (nếu có)",
+    example: "A friendly dog",
+    required: false, // Vì đây là trường tùy chọn
   })
   @IsString()
   @IsOptional() // Cho phép thuộc tính này không bắt buộc
   description?: string;
 
   @ApiProperty({
-    description: 'URL của hình ảnh thú cưng (nếu có)',
-    example: 'https://example.com/image.jpg',
+    description: "URL của hình ảnh thú cưng (nếu có)",
+    example: "https://example.com/image.jpg",
     required: false,
   })
   @IsString()
@@ -79,8 +81,8 @@ export class CreatePetDto {
   image?: string;
 
   @ApiProperty({
-    description: 'Màu sắc của thú cưng (nếu có)',
-    example: 'Brown',
+    description: "Màu sắc của thú cưng (nếu có)",
+    example: "Brown",
     required: false,
   })
   @IsString()
@@ -88,14 +90,14 @@ export class CreatePetDto {
   color?: string;
 
   @ApiProperty({
-    description: 'Giống loài của thú cưng',
-    example: 'Golden Retriever',
+    description: "Giống loài của thú cưng",
+    example: "Golden Retriever",
   })
   @IsString()
   breed: string;
 
   @ApiProperty({
-    description: 'Tuổi của thú cưng',
+    description: "Tuổi của thú cưng",
     example: 3,
     minimum: 0,
     maximum: 30,
@@ -106,36 +108,36 @@ export class CreatePetDto {
   age: number;
 
   @ApiProperty({
-    description: 'Loài của thú cưng (1: Chó, 2: Mèo)',
+    description: "Loài của thú cưng (1: Chó, 2: Mèo)",
     example: 1,
   })
   @IsInt()
   species: number;
 
   @ApiProperty({
-    description: 'Thú cưng đã được tiêm phòng chưa',
+    description: "Thú cưng đã được tiêm phòng chưa",
     example: true,
   })
   @IsBoolean()
   isVacinted: boolean;
 
   @ApiProperty({
-    description: 'Thú cưng đã được xác minh chưa',
+    description: "Thú cưng đã được xác minh chưa",
     example: true,
   })
   @IsBoolean()
   isVerified: boolean;
 
   @ApiProperty({
-    description: 'Trạng thái giao hàng của thú cưng',
-    example: 'PENDING',
+    description: "Trạng thái giao hàng của thú cưng",
+    example: "PENDING",
     enum: DeliveryStatus,
   })
   @IsEnum(DeliveryStatus)
   deliveryStatus: DeliveryStatus;
 
   @ApiProperty({
-    description: 'Thú cưng đã được nhận nuôi chưa',
+    description: "Thú cưng đã được nhận nuôi chưa",
     example: false,
   })
   @IsOptional()
@@ -143,8 +145,8 @@ export class CreatePetDto {
   isAdopted: boolean;
 
   @ApiProperty({
-    description: 'Ghi chú thêm về thú cưng (nếu có)',
-    example: 'Rescued from a busy street',
+    description: "Ghi chú thêm về thú cưng (nếu có)",
+    example: "Rescued from a busy street",
     required: false,
   })
   @IsString()
@@ -156,29 +158,29 @@ export class CreatePetDto {
   rescueDate: Date;
 
   @ApiProperty({
-    description: 'ID của người đã cứu hộ thú cưng',
+    description: "ID của người đã cứu hộ thú cưng",
     example: 205,
   })
   @IsInt()
   rescueBy: number;
 
   @ApiProperty({
-    description: 'Phí cứu hộ',
+    description: "Phí cứu hộ",
     example: 150.5,
   })
   @IsNumber()
   rescueFee: number;
 
   @ApiProperty({
-    description: 'Địa điểm tìm thấy thú cưng',
-    example: 'Central Park, New York',
+    description: "Địa điểm tìm thấy thú cưng",
+    example: "Central Park, New York",
   })
   @IsString()
   locationFound: string;
 
   @ApiProperty({
-    description: 'Trạng thái hiện tại của thú cưng',
-    example: 'AVAILABLE',
+    description: "Trạng thái hiện tại của thú cưng",
+    example: "AVAILABLE",
     enum: PetStatus,
   })
   @IsOptional()
