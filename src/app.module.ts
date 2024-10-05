@@ -11,6 +11,9 @@ import {
   AutoIncrementID,
   AutoIncrementIDOptions,
 } from "@typegoose/auto-increment";
+import { ShelterModule } from "./shelter/shelter.module";
+import { HealthCheckModule } from "./health-check/health-check.module";
+import { AdoptionRequestModule } from "./adoption-request/adoption-request.module";
 
 @Module({
   imports: [
@@ -31,6 +34,9 @@ import {
     AuthModule,
     PetModule,
     UserModule,
+    ShelterModule,
+    HealthCheckModule,
+    AdoptionRequestModule,
   ],
   controllers: [AppController],
   providers: [AppService],
