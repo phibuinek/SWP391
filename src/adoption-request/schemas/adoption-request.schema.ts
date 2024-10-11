@@ -5,31 +5,33 @@ import { Pet } from "src/pet/schemas/pet.schema";
 import { AdoptionStatus } from "../enums/adoption-status.enum";
 
 @Schema({
-    timestamps: true,
+  timestamps: true,
 })
-export class AdoptionRequest{
-    @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Pet'}]})
-    petId: Pet;
+export class AdoptionRequest {
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Pet" })
+  petId: Pet;
 
-    @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]})
-    userId: User;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
+  userId: User;
 
-    @Prop()
-    requestDate: Date;
-    
-    @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]})
-    reviewBy: User;
+  @Prop()
+  requestDate: Date;
 
-    @Prop()
-    comment: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
+  reviewBy: User;
 
-    @Prop()
-    adoptionDate: Date;
+  @Prop()
+  comment: string;
 
-    @Prop({
-        type: String,
-        enum:  AdoptionStatus
-    })
-    status: AdoptionStatus
+  @Prop()
+  adoptionDate: Date;
+
+  @Prop({
+    type: String,
+    enum: AdoptionStatus,
+  })
+  status: AdoptionStatus;
 }
-export const AdoptionRequestSchema = SchemaFactory.createForClass(AdoptionRequest);
+
+export const AdoptionRequestSchema =
+  SchemaFactory.createForClass(AdoptionRequest);
