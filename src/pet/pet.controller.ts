@@ -53,4 +53,23 @@ export class PetController {
   ) {
     return this.petService.updateDeliveryStatus(petId, updateDeliveryStatusDto);
   }
+  @Get("find-by-color/:color")
+  findByColor(@Param("color") color: string) {
+    return this.petService.findByColor(color);
+  }
+
+  @Get("find-by-breed/:breed")
+  findByBreed(@Param("breed") breed: string) {
+    return this.petService.findByBreed(breed);
+  }
+
+  @Get("find-by-age/:age")
+  findByAge(@Param("age") age: number) {
+    return this.petService.findByAge(age);
+  }
+
+  @Get("view-adoptable-pet")
+  viewAdoptablePet() {
+    return this.petService.viewPetAdoptable();
+  }
 }

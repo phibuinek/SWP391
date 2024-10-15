@@ -1,7 +1,14 @@
-import { IsString, IsNumber, IsOptional, IsEnum } from "class-validator";
+import {
+  IsString,
+  IsNumber,
+  IsOptional,
+  IsEnum,
+  IsDate,
+} from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { DeliveryStatus } from "../enums/delivery-status.enum";
 import { PetStatus } from "../enums/pet-status.enum";
+import { Type } from "class-transformer";
 
 export class CreatePetDto {
   @ApiProperty({ example: 1 })
@@ -76,4 +83,9 @@ export class CreatePetDto {
   @ApiProperty({ example: PetStatus.AVAILABLE })
   @IsEnum(PetStatus)
   petStatus?: PetStatus = PetStatus.AVAILABLE;
+
+  @ApiProperty({ example: "2024-10-03T12:00:00Z" })
+  @IsDate()
+  @Type(() => Date)
+  rescueDate: Date;
 }

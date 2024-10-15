@@ -117,4 +117,39 @@ export class PetService {
     }
     return updateDeliveryStatus;
   }
+  async findByColor(colorSearch: string): Promise<Pet[]> {
+    const pets = await this.petModel
+      .find({ color: { $regex: new RegExp(colorSearch, "i") } })
+      .exec();
+    if (!pets || pets.length === 0) {
+      throw new NotFoundException(`No pets found with color: ${colorSearch}`);
+    }
+    return pets;
+  }
+
+  async findByBreed(breedSearch: string): Promise<Pet[]> {
+    const pets = await this.petModel
+      .find({ breed: { $regex: new RegExp(breedSearch, "i") } })
+      .exec();
+    if (!pets || pets.length === 0) {
+      throw new NotFoundException(`No  pets found with breed: ${breedSearch}`);
+    }
+    return pets;
+  }
+
+  async findByAge(ageSearch: number): Promise<Pet[]> {
+    const pets = await this.petModel.find({ age: ageSearch }).exec();
+    if (!pets || pets.length === 0) {
+      throw new NotFoundException(`No pet found with age: ${ageSearch}`);
+    }
+    return pets;
+  }
+
+  async viewPetAdoptable(): Promise<Pet[]> {
+    const pets = await this.petModel.find({ isAdopted: false }).exec();
+    if (!pets || pets.length === 0) {
+      throw new NotFoundException(`No adoptable pet found`);
+    }
+    return pets;
+  }
 }
