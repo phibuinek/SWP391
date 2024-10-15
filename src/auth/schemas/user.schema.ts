@@ -15,6 +15,9 @@ export class User {
   @Prop({ required: true, unique: true })
   email: string;
 
+  @Prop({ default: false })
+  isEmailVerified: boolean;
+
   @Prop({ required: true })
   name: string;
 
