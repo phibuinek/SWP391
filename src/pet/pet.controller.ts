@@ -15,6 +15,7 @@ import { UpdatePetDto } from "./dto/update-pet.dto";
 import { ApiTags } from "@nestjs/swagger";
 import { DeliveryStatus } from "./enums/delivery-status.enum";
 import { UpdateDeliveryStatusDTO } from "./dto/update-delivery-status.dto";
+import { Request } from "express";
 
 @ApiTags("Pet")
 @Controller("pet")
@@ -36,6 +37,26 @@ export class PetController {
     return this.petService.findOne(id);
   }
 
+  @Get("find-by-color/:color")
+  findByColor(@Param("color") color: string){
+    return this.petService.findByColor(color);
+  }
+
+  @Get("find-by-breed/:breed")
+  findByBreed(@Param("breed") breed: string){
+    return this.petService.findByBreed(breed);
+  }
+
+  @Get("find-by-age/:age")
+  findByAge(@Param("age") age: number){
+    return this.petService.findByAge(age);
+  }
+
+  @Get("view-adoptable-pet")
+  viewAdoptablePet(){
+    return this.petService.viewPetAdoptable();
+  }
+  
   @Patch("update/:id")
   update(@Param("id") id: string, @Body() updatePetDto: UpdatePetDto) {
     return this.petService.update(id, updatePetDto);
@@ -43,33 +64,11 @@ export class PetController {
 
   @Delete("delete/:id")
   remove(@Param("id") id: string) {
-    return this.petService.remove(id);
+    return this.petService.remove(id);  
   }
 
-  @Put("update-delivery-status/:petId")
-  async updateDeliveryStatus(
-    @Param("petId") petId: string,
-    @Body() updateDeliveryStatusDto: UpdateDeliveryStatusDTO,
-  ) {
+  @Put('update-delivery-status/:petId')
+  async updateDeliveryStatus(@Param('petId') petId: string, @Body() updateDeliveryStatusDto: UpdateDeliveryStatusDTO ) {
     return this.petService.updateDeliveryStatus(petId, updateDeliveryStatusDto);
-  }
-  @Get("find-by-color/:color")
-  findByColor(@Param("color") color: string) {
-    return this.petService.findByColor(color);
-  }
-
-  @Get("find-by-breed/:breed")
-  findByBreed(@Param("breed") breed: string) {
-    return this.petService.findByBreed(breed);
-  }
-
-  @Get("find-by-age/:age")
-  findByAge(@Param("age") age: number) {
-    return this.petService.findByAge(age);
-  }
-
-  @Get("view-adoptable-pet")
-  viewAdoptablePet() {
-    return this.petService.viewPetAdoptable();
   }
 }

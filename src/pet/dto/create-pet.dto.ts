@@ -1,44 +1,34 @@
-import {
-  IsString,
-  IsNumber,
-  IsOptional,
-  IsEnum,
-  IsDate,
-} from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
-import { DeliveryStatus } from "../enums/delivery-status.enum";
-import { PetStatus } from "../enums/pet-status.enum";
-import { Type } from "class-transformer";
+import { IsString, IsNumber, IsOptional, IsEnum, IsDate } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { DeliveryStatus } from '../enums/delivery-status.enum';
+import { PetStatus } from '../enums/pet-status.enum';
+import { Type } from 'class-transformer';
 
 export class CreatePetDto {
-  @ApiProperty({ example: 1 })
+  @ApiProperty({ example: "Location A" })
   @IsOptional()
-  @IsNumber()
-  shelterId?: number;
-
-  @ApiProperty({ example: "PET123" })
   @IsString()
-  petCode: string;
+  shelterLocation: string;
 
-  @ApiProperty({ example: "https://example.com/image.jpg" })
+  @ApiProperty({ example: 'https://example.com/image.jpg' })
   @IsString()
   image: string;
 
-  @ApiProperty({ example: "Milo" })
+  @ApiProperty({ example: 'Milo' })
   @IsString()
   name: string;
 
-  @ApiProperty({ example: "A friendly dog." })
+  @ApiProperty({ example: 'A friendly dog.' })
   @IsOptional()
   @IsString()
   description?: string;
 
-  @ApiProperty({ example: "Brown" })
+  @ApiProperty({ example: 'Brown' })
   @IsOptional()
   @IsString()
   color?: string;
 
-  @ApiProperty({ example: "Labrador" })
+  @ApiProperty({ example: 'Labrador' })
   @IsString()
   breed: string;
 
@@ -46,46 +36,25 @@ export class CreatePetDto {
   @IsNumber()
   age: number;
 
-  @ApiProperty({ example: true })
-  @IsOptional()
-  isVacinted?: boolean;
+  @ApiProperty({example: "male"})
+  @IsString()
+  gender: string;
 
-  @ApiProperty({ example: false })
-  @IsOptional()
-  isVerified?: boolean;
-
-  @ApiProperty({ example: DeliveryStatus.PENDING })
-  @IsOptional()
-  @IsEnum(DeliveryStatus)
-  deliveryStatus?: DeliveryStatus = DeliveryStatus.PENDING;
-
-  @ApiProperty({ example: false })
-  @IsOptional()
-  isAdopted?: boolean = false;
-
-  @ApiProperty({ example: "Rescue from the street." })
+  @ApiProperty({ example: 'Rescue from the street.' })
   @IsOptional()
   @IsString()
   note?: string;
 
-  @ApiProperty({ example: "60e6b8e2f1a2b93f68f87c6d" }) // Ví dụ về ObjectId của User
+  @ApiProperty({example: '6710ceed287697ec4b88b615'}) 
   @IsString()
+  @IsOptional()
   rescueBy: string;
 
   @ApiProperty({ example: 100 })
   @IsNumber()
   rescueFee: number;
 
-  @ApiProperty({ example: "Park" })
+  @ApiProperty({ example: 'Park' })
   @IsString()
   locationFound: string;
-
-  @ApiProperty({ example: PetStatus.AVAILABLE })
-  @IsEnum(PetStatus)
-  petStatus?: PetStatus = PetStatus.AVAILABLE;
-
-  @ApiProperty({ example: "2024-10-03T12:00:00Z" })
-  @IsDate()
-  @Type(() => Date)
-  rescueDate: Date;
 }

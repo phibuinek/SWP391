@@ -1,45 +1,44 @@
-import { ApiProperty, ApiResponse } from "@nestjs/swagger";
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  MinLength,
-} from "class-validator";
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Matches, MinLength } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { Role } from '../enums/role.enum';
 
 export class SignUpDto {
-  @ApiProperty({
-    description: 'Tên người dùng',
-    example: 'John Doe',
-  })
+  @ApiProperty({ example: 'John Doe' })
   @IsNotEmpty()
   @IsString()
-  readonly name: string;
+  name: string;
 
-  @ApiProperty({
-    description: 'Địa chỉ email của người dùng',
-    example: 'johndoe@example.com',
-  })
+  @ApiProperty({ example: 'john.doe@example.com' })
   @IsNotEmpty()
-  @IsEmail({}, { message: "Please enter correct email" })
-  readonly email: string;
+  @IsEmail({}, { message: 'Invalid email format' })
+  email: string;
 
-  @ApiProperty({
-    description: 'Mật khẩu người dùng, tối thiểu 6 ký tự',
-    example: 'password123',
-    minLength: 6,
-  })
+  @ApiProperty({ example: 'password123' })
   @IsNotEmpty()
-  @IsString()
-  @MinLength(6)
-  readonly password: string;
+  @MinLength(6, { message: 'Password must be at least 6 characters long' })
+  password: string;
 
-  @ApiProperty({
-    description: 'Danh sách vai trò của người dùng, nếu có',
-    example: ['customers'],
-    required: false, 
-    type: [String],
-  })
+  @ApiProperty({ example: 'https://example.com/avatar.jpg', required: false })
   @IsOptional()
-  readonly role: string[];
+  @IsString()
+  avatar: string;
+
+  @ApiProperty({ example: '123 Main Street', required: false })
+  @IsOptional()
+  @IsString()
+  address: string;
+
+  @ApiProperty({ example: '0123456789', required: false })
+  @IsOptional()
+  @IsString()
+  phone: string;
+
+  @ApiProperty({ example: Role.CUSTOMER, enum: Role, required: false })
+  @IsOptional()
+  @IsEnum(Role, { each: true })
+  role?: Role;
+
+  @IsOptional()
+  @IsString()
+  status?: string;
 }

@@ -8,5 +8,6 @@ import { ShelterService } from "./shelter.service";
     imports: [MongooseModule.forFeature([{name: Shelter.name, schema: ShelterSchema }])],
     controllers: [ShelterController],
     providers: [ShelterService],
+    exports: [MongooseModule],
 })
 export class ShelterModule{}

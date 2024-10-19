@@ -23,5 +23,4 @@ export class HealthCheckController {
         return this.healthCheckService.viewHealthChecksByPetId(petId);
     }
 
-
 }
