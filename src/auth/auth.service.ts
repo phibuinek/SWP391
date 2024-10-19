@@ -20,16 +20,16 @@ export class AuthService {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "lehuynhminhtri09082003@mail.com",
+        user: "lehuynhminhtri09082003@gmail.com",
         pass: "mfsr fmdv hyzt wkir",
       },
     });
 
     const mailOptions = {
-      from: "lehuynhminhtri09082003@mail.com",
+      from: "lehuynhminhtri09082003@gmail.com",
       to: email,
       subject: "Verify your email",
-      text: `Please verify your email by clicking the following link: http://localhost:3000/auth/verify-email?token=${token}`,
+      text: `Please verify your email by clicking the following link: http://localhost:8000/auth/verify-email?token=${token}`,
     };
 
     await transporter.sendMail(mailOptions);

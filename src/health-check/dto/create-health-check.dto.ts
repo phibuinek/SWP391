@@ -35,7 +35,7 @@
 
     @IsOptional()
     @IsDate()
-    @Type(() => Date) //
+    @Type(() => Date) 
     @ApiProperty({ example: '2024-10-03T12:00:00Z' }) 
     checkingDate: Date;
     

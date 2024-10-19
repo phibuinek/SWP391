@@ -1,5 +1,5 @@
 export enum CheckingType{
-    INITIAL = "INITIAL",
-    ROUTINE = 'ROUTINE',
-    ADOPTED = 'ADOPTED',
+    INITIAL = "INITIAL",  
+    ROUTINE = 'ROUTINE',    
+    ADOPTED = 'ADOPTED',    
 }

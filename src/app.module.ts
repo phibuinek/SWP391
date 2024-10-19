@@ -14,8 +14,7 @@ import {
 import { ShelterModule } from "./shelter/shelter.module";
 import { HealthCheckModule } from "./health-check/health-check.module";
 import { AdoptionRequestModule } from "./adoption-request/adoption-request.module";
-import { FeedbackModule } from "./feedback/feedback.module";
-import { VolunteerTaskModule } from './volunteer-task/volunteer-task.module';
+
 
 @Module({
   imports: [
@@ -39,8 +38,6 @@ import { VolunteerTaskModule } from './volunteer-task/volunteer-task.module';
     ShelterModule,
     HealthCheckModule,
     AdoptionRequestModule,
-    FeedbackModule,
-    VolunteerTaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
