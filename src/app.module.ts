@@ -14,6 +14,9 @@ import {
 import { ShelterModule } from "./shelter/shelter.module";
 import { HealthCheckModule } from "./health-check/health-check.module";
 import { AdoptionRequestModule } from "./adoption-request/adoption-request.module";
+import { PaymentService } from './payment/payment.service';
+import { PaymentController } from './payment/payment.controller';
+import { PaymentModule } from './payment/payment.module';
 
 
 @Module({
@@ -38,8 +41,9 @@ import { AdoptionRequestModule } from "./adoption-request/adoption-request.modul
     ShelterModule,
     HealthCheckModule,
     AdoptionRequestModule,
+    PaymentModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, PaymentController],
+  providers: [AppService, PaymentService],
 })
 export class AppModule {}
