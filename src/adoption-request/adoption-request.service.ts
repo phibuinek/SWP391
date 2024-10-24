@@ -75,7 +75,7 @@ export class AdoptionRequestService {
     return adoptinRequests;
   }
 
-  async delete(adoptionRequestId: String): Promise<AdoptionRequest> {
+  async delete(adoptionRequestId: string): Promise<AdoptionRequest> {
     const deleteAdoptionRequest = await this.adoptionRequestModel
       .findByIdAndDelete(adoptionRequestId)
       .exec();

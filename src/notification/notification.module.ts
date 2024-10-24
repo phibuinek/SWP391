@@ -6,6 +6,7 @@ import {
 } from "./schemas/notification.schema";
 import { NotificationService } from "./notification.service";
 import { NotificationGateway } from "./notification.gateway";
+import { NotificationController } from "./notification.controller";
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { NotificationGateway } from "./notification.gateway";
     ]),
   ],
   providers: [NotificationService, NotificationGateway],
-  exports: [NotificationService], // Để có thể sử dụng service này ở các module khác
+  controllers: [NotificationController],
+  exports: [NotificationService, NotificationGateway], // Export NotificationService để sử dụng ở module khác
 })
 export class NotificationModule {}
