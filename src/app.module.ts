@@ -14,10 +14,13 @@ import {
 import { ShelterModule } from "./shelter/shelter.module";
 import { HealthCheckModule } from "./health-check/health-check.module";
 import { AdoptionRequestModule } from "./adoption-request/adoption-request.module";
-import { PaymentService } from './payment/payment.service';
-import { PaymentController } from './payment/payment.controller';
-import { PaymentModule } from './payment/payment.module';
-
+import { PaymentService } from "./payment/payment.service";
+import { PaymentController } from "./payment/payment.controller";
+import { PaymentModule } from "./payment/payment.module";
+import { NotificationGateway } from "./notification/notification.gateway";
+import { NotificationService } from "./notification/notification.service";
+import { NotificationController } from "./notification/notification.controller";
+import { NotificationModule } from "./notification/notification.module";
 
 @Module({
   imports: [
@@ -42,8 +45,14 @@ import { PaymentModule } from './payment/payment.module';
     HealthCheckModule,
     AdoptionRequestModule,
     PaymentModule,
+    NotificationModule,
   ],
-  controllers: [AppController, PaymentController],
-  providers: [AppService, PaymentService],
+  controllers: [AppController, PaymentController, NotificationController],
+  providers: [
+    AppService,
+    PaymentService,
+    NotificationGateway,
+    NotificationService,
+  ],
 })
 export class AppModule {}
