@@ -5,12 +5,14 @@ import { Pet, PetSchema } from "./schemas/pet.schema";
 import { MongooseModule } from "@nestjs/mongoose";
 import { ShelterModule } from "src/shelter/shelter.module";
 import { UserModule } from "src/user/user.module";
+import { NotificationModule } from "src/notification/notification.module";
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Pet.name, schema: PetSchema }]), // Đăng ký model Pet
     ShelterModule,
-    UserModule
+    UserModule,
+    NotificationModule,
   ],
   controllers: [PetController],
   providers: [PetService],

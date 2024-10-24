@@ -64,7 +64,7 @@ export class NotificationService {
   // Phương thức đánh dấu thông báo là đã đọc
   async markAsRead(notificationId: string) {
     return this.notificationModel
-      .findByIdAndUpdate(notificationId, { read: true }, { new: true })
+      .findByIdAndUpdate(notificationId, { isRead: true }, { new: true })
       .exec();
   }
 }
