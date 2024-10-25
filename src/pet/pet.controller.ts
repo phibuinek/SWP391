@@ -61,7 +61,7 @@ export class PetController {
     return this.petService.viewPetAdoptable();
   }
 
-  @Patch("update/:id")
+  @Put("update/:id")
   update(@Param("id") id: string, @Body() updatePetDto: UpdatePetDto) {
     return this.petService.update(id, updatePetDto);
   }
