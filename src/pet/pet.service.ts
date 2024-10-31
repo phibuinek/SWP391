@@ -15,15 +15,16 @@ import { User, UserDocument } from "src/auth/schemas/user.schema";
 export class PetService {
   constructor(
     @InjectModel(Pet.name) private readonly petModel: Model<PetDocument>,
-    @InjectModel(Shelter.name)
-    private readonly shelterModel: Model<ShelterDocument>,
-  ) {}
+    @InjectModel(Shelter.name) private readonly shelterModel: Model<ShelterDocument>,
+    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+  ) { }
   async onModuleInit() {
     const pets = await this.petModel.find().exec(); // Lấy tất cả pet
+    const rescueBy = await this.userModel.findOne({ email: 'volunteerA@gmail.com' }).exec();
 
     if (pets.length === 0) {
       const shelterLocationDefault = await this.shelterModel
-        .findOne({ Location: "Location A" })
+        .findOne({ location: "Location A" })
         .exec();
       await this.petModel.create([
         {
@@ -41,7 +42,7 @@ export class PetService {
           deliveryStatus: DeliveryStatus.PENDING,
           isAdopted: false,
           note: "Found in the park.",
-          rescueBy: "person",
+          rescueBy: rescueBy._id,
           rescueFee: 100,
           locationFound: "City Park",
           petStatus: PetStatus.AVAILABLE,
@@ -61,7 +62,7 @@ export class PetService {
           deliveryStatus: DeliveryStatus.PENDING,
           isAdopted: false,
           note: "Rescued from the street.",
-          rescueBy: "person",
+          rescueBy: rescueBy._id,
           rescueFee: 150,
           locationFound: "Downtown",
           petStatus: PetStatus.AVAILABLE,
@@ -90,7 +91,7 @@ export class PetService {
   }
 
   async findAll(): Promise<Pet[]> {
-    return this.petModel.find().exec();
+    return this.petModel.find({ petStatus: PetStatus.AVAILABLE }).exec();
   }
 
   async findOne(id: string): Promise<Pet> {
@@ -103,7 +104,7 @@ export class PetService {
 
   async findByColor(colorSearch: string): Promise<Pet[]> {
     const pets = await this.petModel
-      .find({ color: { $regex: new RegExp(colorSearch, "i") } })
+      .find({ color: { $regex: new RegExp(colorSearch, "i") }, petStatus: PetStatus.AVAILABLE })
       .exec();
     if (!pets || pets.length === 0) {
       throw new NotFoundException(`No pets found with color: ${colorSearch}`);
@@ -113,7 +114,7 @@ export class PetService {
 
   async findByBreed(breedSearch: string): Promise<Pet[]> {
     const pets = await this.petModel
-      .find({ breed: { $regex: new RegExp(breedSearch, "i") } })
+      .find({ breed: { $regex: new RegExp(breedSearch, "i") }, petStatus: PetStatus.AVAILABLE })
       .exec();
     if (!pets || pets.length === 0) {
       throw new NotFoundException(`No  pets found with breed: ${breedSearch}`);
@@ -121,16 +122,16 @@ export class PetService {
     return pets;
   }
 
-  async findByAge(ageSearch: number): Promise<Pet[]> {
-    const pets = await this.petModel.find({ age: ageSearch }).exec();
-    if (!pets || pets.length === 0) {
-      throw new NotFoundException(`No pet found with age: ${ageSearch}`);
+  async viewPetByVolunteer(rescueBy: string): Promise<Pet[]> {
+    const pets = await this.petModel.find({ rescueBy: rescueBy, petStatus: PetStatus.AVAILABLE }).exec();
+    if (!pets) {
+      throw new NotFoundException(`No pet resued by this volunteer`);
     }
     return pets;
   }
 
   async viewPetAdoptable(): Promise<Pet[]> {
-    const pets = await this.petModel.find({ isAdopted: false }).exec();
+    const pets = await this.petModel.find({ isAdopted: false, petStatus: PetStatus.AVAILABLE }).exec();
     if (!pets || pets.length === 0) {
       throw new NotFoundException(`No adoptable pet found`);
     }
@@ -139,7 +140,7 @@ export class PetService {
 
   async update(id: string, updatePetDto: UpdatePetDto): Promise<Pet> {
     const updatedPet = await this.petModel
-      .findByIdAndUpdate(id, updatePetDto, { new: true })
+      .findOneAndUpdate({_id: id, petStatus: PetStatus.AVAILABLE}, updatePetDto, { new: true })
       .exec();
 
     if (!updatedPet) {
@@ -150,7 +151,11 @@ export class PetService {
   }
 
   async remove(id: string): Promise<Pet> {
-    const deletedPet = await this.petModel.findByIdAndDelete(id).exec();
+    const deletedPet = await this.petModel.findByIdAndUpdate(
+      id,
+      {petStatus: PetStatus.NOT_AVAILABLE},
+      {new: true},
+    );
 
     if (!deletedPet) {
       throw new NotFoundException(`Pet with id ${id} not found`);
@@ -158,12 +163,12 @@ export class PetService {
 
     return deletedPet;
   }
+
   async updateDeliveryStatus(
     petId: string,
-    updateDeliveryStatusDto: UpdateDeliveryStatusDTO,
-  ): Promise<Pet> {
-    const updateDeliveryStatus = await this.petModel.findByIdAndUpdate(
-      petId,
+    updateDeliveryStatusDto: UpdateDeliveryStatusDTO,): Promise<Pet> {
+    const updateDeliveryStatus = await this.petModel.findOneAndUpdate(
+      {_id: petId, petStatus: PetStatus.AVAILABLE},
       { deliveryStatus: updateDeliveryStatusDto.deliveryStatus },
       { new: true },
     );
@@ -171,5 +176,41 @@ export class PetService {
       throw new NotFoundException("Pet not found");
     }
     return updateDeliveryStatus;
+  }
+
+  async udpatePetAdopted(petId: string) {
+    const updatePetAdopted = await this.petModel.findOneAndUpdate(
+      {_id: petId, petStatus: PetStatus.AVAILABLE},
+      { isAdopted: true },
+      { new: true }
+    );
+    if(!updatePetAdopted){
+      throw new NotFoundException("Pet not found");
+    }
+    return updatePetAdopted;
+  }
+
+  async updatePetVerified(petId: string){
+    const updatePetVerified = await this.petModel.findOneAndUpdate(
+      {_id: petId, petStatus: PetStatus.AVAILABLE},
+      {isVerified: true},
+      {new: true},
+    );
+    if(!updatePetVerified){
+      throw new NotFoundException(`Pet not found`);
+    }
+    return updatePetVerified;
+  }
+
+  async updatePetVacinted(petId: string){
+    const updatePetVacinted = await this.petModel.findOneAndUpdate(
+      {_id: petId, petStatus: PetStatus.AVAILABLE},
+      {isVacinted: true},
+      {new: true},
+    );
+    if(!updatePetVacinted){
+      throw new NotFoundException(`Pet not found`);
+    }
+    return updatePetVacinted;
   }
 }

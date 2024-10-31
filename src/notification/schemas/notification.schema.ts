@@ -15,7 +15,7 @@ export class Notification extends Document {
   @Prop({ type: Boolean, default: false })
   isRead: boolean;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String })
   type: string;
 
   @Prop({ type: String })

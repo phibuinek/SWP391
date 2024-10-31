@@ -1,4 +1,4 @@
-import { IsEnum } from 'class-validator';
+import { IsEnum, IsOptional } from 'class-validator';
 import { AdoptionStatus } from '../enums/adoption-status.enum';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -14,4 +14,8 @@ export class UpdateStatusDto {
     })
     comment: string;
 
+    @ApiProperty({
+        example: '',
+    })
+    reviewBy: string;
 }

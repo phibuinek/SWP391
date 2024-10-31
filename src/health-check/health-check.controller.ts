@@ -17,7 +17,6 @@ export class HealthCheckController {
         return this.healthCheckService.createHealthCheck(createHealthCheckDto);
     }
 
-
     @Get('pet/:petId')
     async viewHealthChecksByPetId(@Param('petId') petId: string): Promise<HealthCheck[]> {
         return this.healthCheckService.viewHealthChecksByPetId(petId);

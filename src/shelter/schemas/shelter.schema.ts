@@ -9,35 +9,29 @@ export type ShelterDocument = Shelter & Document;
     timestamps: true
 })
 export class Shelter{
-    @Prop()
-    ShelterCode: String;
 
+    @Prop({unique: true})
+    name: string
+    
     @Prop()
-    Location: String;
+    location: string;
 
-    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'User'})
-    ManagedBy: User;
+    @Prop({unique: true})
+    phone: string;
 
-    @Prop()
-    Phone: String;
-
-    @Prop()
-    Email: String;
-
-    @Prop()
-    Quanity: Integer;
-
-    @Prop()
-    Capacity: Integer;
-
-    @Prop()
-    Availble: Integer;
+    @Prop({unique: true})
+    email: string;
+    
+    @Prop({
+        default: 0,
+    })
+    availble: number;
 
     @Prop({
         type: String,
         enum: ShelterStatus,
         default: ShelterStatus.AVAILABLE,
     })
-    Status: ShelterStatus
+    status: ShelterStatus
 }
 export const ShelterSchema = SchemaFactory.createForClass(Shelter);

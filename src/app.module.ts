@@ -21,6 +21,9 @@ import { NotificationGateway } from "./notification/notification.gateway";
 import { NotificationService } from "./notification/notification.service";
 import { NotificationController } from "./notification/notification.controller";
 import { NotificationModule } from "./notification/notification.module";
+import { VolunteerTaskModule } from "./volunteer-task/volunteer-task.module";
+import { FeedbackModule } from "./feedback/feedback.module";
+import { EventModule } from "./event/event.module";
 
 @Module({
   imports: [
@@ -45,7 +48,10 @@ import { NotificationModule } from "./notification/notification.module";
     HealthCheckModule,
     AdoptionRequestModule,
     PaymentModule,
+    VolunteerTaskModule,
     NotificationModule,
+    FeedbackModule,
+    EventModule,
   ],
   controllers: [AppController, PaymentController, NotificationController],
   providers: [AppService, PaymentService],

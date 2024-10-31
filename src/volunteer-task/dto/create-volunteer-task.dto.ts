@@ -8,40 +8,41 @@ import {
 } from "class-validator";
 import { Type } from "class-transformer"; // Dùng để chuyển đổi kiểu cho Date
 import { Priority, Status } from "../schemas/volunteer-task.schema"; // Import các enum Priority và Status
+import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateVolunteerTaskDto {
   @IsNotEmpty()
-  @IsMongoId() // Xác nhận là ObjectId hợp lệ
+  @IsMongoId() 
+  @ApiProperty({
+    example: "",
+  })
   assignedTo: string;
 
   @IsNotEmpty()
-  @IsMongoId() // Xác nhận là ObjectId hợp lệ
+  @IsMongoId() 
+  @ApiProperty({
+    example: "",
+  })
   assignedBy: string;
 
-  @IsOptional()
-  @IsDate() // Xác nhận kiểu Date
-  @Type(() => Date) // Dùng để chuyển đổi string thành Date
-  assignedDate?: Date;
-
   @IsNotEmpty()
-  @IsString() // Xác nhận mô tả công việc là chuỗi
+  @IsString() 
+  @ApiProperty({
+    example: "",
+  })
   taskDescription: string;
 
-  @IsOptional()
-  @IsDate() // Xác nhận kiểu Date
+  @IsDate() 
   @Type(() => Date)
+  @ApiProperty({
+    example: "",
+  })
   dueDate?: Date;
 
   @IsOptional()
-  @IsDate() // Xác nhận kiểu Date
-  @Type(() => Date)
-  completedDate?: Date;
-
-  @IsOptional()
-  @IsEnum(Priority) // Xác nhận giá trị thuộc Enum Priority
+  @IsEnum(Priority) 
+  @ApiProperty({
+    example: "LOW",
+  })
   priority?: Priority;
-
-  @IsOptional()
-  @IsEnum(Status) // Xác nhận giá trị thuộc Enum Status
-  status?: Status;
 }

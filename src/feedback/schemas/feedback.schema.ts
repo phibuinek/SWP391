@@ -17,7 +17,13 @@ export class Feedback {
   @Prop({ type: Number, required: true, min: 1, max: 5 }) // Rating giới hạn từ 1 đến 5
   rating: number;
 
-  @Prop({ type: Date, default: Date.now })
+  @Prop({
+    type: Date, default: () => {
+      const now = new Date();
+      now.setHours(now.getHours() + 7);
+      return now;
+    }
+  })
   feedbackAt: Date;
 }
 

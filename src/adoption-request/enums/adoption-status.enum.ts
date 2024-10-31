@@ -3,4 +3,5 @@ export enum AdoptionStatus {
     APPROVED = 'APPROVED',
     REJECTED = 'REJECTED',
     COMPLETED = 'COMPLETED',
+    NOT_AVAILABLE = 'NOT_AVAILABLE'
 }
