@@ -16,5 +16,6 @@ import { NotificationModule } from "src/notification/notification.module";
   ],
   controllers: [PetController],
   providers: [PetService],
+  exports: [MongooseModule],
 })
 export class PetModule {}

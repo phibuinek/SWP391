@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import {
   IsNotEmpty,
   IsString,
@@ -10,19 +11,31 @@ import {
 export class CreateFeedbackDto {
   @IsNotEmpty()
   @IsMongoId()
+  @ApiProperty({
+    example: ""
+  })
   userId: string;
 
   @IsNotEmpty()
   @IsMongoId()
+  @ApiProperty({
+    example: ""
+  })
   petId: string;
 
   @IsNotEmpty()
   @IsString()
+  @ApiProperty({
+    example: "web sieu hay"
+  })
   description: string;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(1)
-  @Max(5)
+  @Max(10)
+  @ApiProperty({
+    example: 5
+  })
   rating: number;
 }
