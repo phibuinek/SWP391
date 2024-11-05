@@ -86,7 +86,7 @@ export class UserService {
           avatar: "https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-1/456509920_3817760355171565_7092026517832195088_n.jpg?stp=dst-jpg_s200x200&_nc_cat=108&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeHYSGJdBh4tZp4QfwPXSS-wLwgdt6kT4rQvCB23qRPitDDrbvK0mj39vJcQhkzwslSsD4jWCzry6IXzFnabTT7D&_nc_ohc=khuWOXZgdWcQ7kNvgFzPM6T&_nc_zt=24&_nc_ht=scontent.fsgn5-6.fna&_nc_gid=AOk249ORrATRNfG6xCkSmyz&oh=00_AYBpdmoyp4SnfKMrtbY8Hdfvl90lezYBR73-X1JzxRKQgQ&oe=672575B9",
         },
         {
-          name: 'volunteerB',
+          name: 'volunteer B',
           email: 'volunteerB@gmail.com',
           password: deafaultPassword,
           role: Role.VOLUNTEER,
@@ -164,8 +164,6 @@ export class UserService {
         },
       ]);
       console.log("Sample users created!")
-    } else {
-      console.log("Sample users data already existed!")
     }
   }
 }

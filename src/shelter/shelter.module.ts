@@ -12,6 +12,6 @@ import { UserModule } from "src/user/user.module";
     ],
     controllers: [ShelterController],
     providers: [ShelterService],
-    exports: [MongooseModule],
+    exports: [MongooseModule, ShelterService],
 })
 export class ShelterModule{}
