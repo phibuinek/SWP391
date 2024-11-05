@@ -4,11 +4,12 @@ import { User, UserSchema } from "src/auth/schemas/user.schema";
 import { EventSchema } from "./schemas/event.schema";
 import { EventController } from "./event.controller";
 import { EventService } from "./event.service";
+import { UserModule } from "src/user/user.module";
 
 @Module({
     imports: [
       MongooseModule.forFeature([{ name: Event.name, schema: EventSchema }]),
-      MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]), 
+      UserModule, 
     ],
     controllers: [EventController],
     providers: [EventService],
