@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Post, Get, Param  } from "@nestjs/common";
 import { PaymentService } from "./payment.service";
 
 @Controller('payment')
@@ -26,6 +26,11 @@ export class PaymentController {
       message: "Ok",
       data: verifiedData,
     };
+  }
+
+  @Get('history/:userId')
+  async getUserTransactionHistory(@Param('userId') userId: string) {
+    return this.paymentService.getUserTransactionHistory(userId);
   }
 }
 
