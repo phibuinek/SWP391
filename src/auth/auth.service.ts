@@ -29,7 +29,7 @@ export class AuthService {
       from: "lehuynhminhtri09082003@gmail.com",
       to: email,
       subject: "Verify your email",
-      text: `Please verify your email by clicking the following link: http://localhost:8000/auth/verify-email?token=${token}`,
+      text: `Please verify your email by clicking the following link: http://localhost:3000/verifyEmail?token=${token}`,
     };
 
     await transporter.sendMail(mailOptions);
