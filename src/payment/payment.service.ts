@@ -3,7 +3,7 @@ import axios from "axios";
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as crypto from "crypto";
-import { Transaction, TransactionDocument, TransactionType, TransactionStatus } from './schemas/transaction.schema';
+import { Transaction, TransactionDocument, TransactionType, TransactionStatus } from '../payment/schemas/transactiton.schema';
 
 @Injectable()
 export class PaymentService {
