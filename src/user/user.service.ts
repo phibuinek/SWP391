@@ -61,7 +61,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FAdm...2ee7a817",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FAdmin.jpg?alt=media&token=6393c109-f1c6-45e5-8b96-6c672ee7a817",
         },
         {
           name: 'shelter staff',
@@ -72,7 +72,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fshe...cbcac8e5",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FshelterStaff.jpg?alt=media&token=b3fd50f3-6755-46d2-9067-7942cbcac8e5",
         },
         {
           name: 'volunteer A',
@@ -83,7 +83,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fvol...5bdc541b",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FvolunteerA.jpg?alt=media&token=5e444cc0-14de-4230-91e1-f18c5bdc541b",
         },
         {
           name: 'volunteer B',
@@ -94,7 +94,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fvol...cfefd380",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FvolunteerB.jpg?alt=media&token=33a3e66e-d650-45c6-9394-6e01cfefd380",
         },
         {
           name: 'volunteer C',
@@ -105,7 +105,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fvol...fa3ff391",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FvolunteerC.jpg?alt=media&token=af586895-3490-4296-8be8-8d9bfa3ff391",
         },
         {
           name: 'volunteer D',
@@ -116,7 +116,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fvol...a2eece21",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FvolunteerD.jpg?alt=media&token=ee0c6328-8e5f-491d-8d27-8dfba2eece21",
         },
         {
           name: 'customer A',
@@ -127,7 +127,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fcus...ad6202e5",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FcustomerA.jpg?alt=media&token=97aef002-8158-483c-a9e1-79f0ad6202e5",
         },
         {
           name: 'customer B',
@@ -138,7 +138,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fcus...e016d784",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FcustomerB.jpg?alt=media&token=0f3c9770-3676-454f-ad05-8422e016d784",
         },
         {
           name: 'customer C',
@@ -149,7 +149,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fcus...2e7c17d0",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FcustomerC.jpg?alt=media&token=a01b3610-c99c-46c7-bdb8-d6032e7c17d0",
         },
         {
           name: 'customer D',
@@ -160,7 +160,7 @@ export class UserService {
           status: AccountStatus.ACTIVE,
           address: "123 A street",
           phone: "0909123456",
-          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2Fcus...76fdcd1d",
+          avatar: "https://firebasestorage.googleapis.com/v0/b/pawfunupload.firebasestorage.app/o/Avatars%2FcustomerD.jpg?alt=media&token=1593ee23-6c36-468b-87e3-380076fdcd1d",
         },
       ]);
       console.log("Sample users created!")
